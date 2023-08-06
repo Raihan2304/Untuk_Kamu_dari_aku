@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nembak Cewe</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  .container {
+    padding: 20px;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  button {
+    padding: 5px 20px;
+    font-size: 16px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    background-color: #007bff; /* Warna biru pada tombol */
+  }
+  #sendMessage:hover {
+    background-color: #00c7b1;
+  }
+  #giveTimeButton:hover {
+    background-color: #ff9f00;
+  }
+  #rejectButton:hover {
+    background-color: #ff4545;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>❤️ Untuk kamu wanita yang aku sayang ❤️</h1>
+  <h4>Mungkin sangat terburu-buru mengatakan ini, tetapi hati ini sangat sulit menahan rasa ini</h4>
+  <p>" Apakah kamu bersedia menerima aku untuk menjadi pasangan kamu, serta berkomitmen untuk jenjang yang lebih ? "</p>
+  <div class="button-container">
+    <button id="sendMessage">Mau..!</button>
+    <button id="giveTimeButton">Beri aku waktu</button>
+    <button id="rejectButton">Menolak</button>
+  </div>
+</div>
+<script>
+  var rejectCount = 0;
+
+  document.getElementById("sendMessage").addEventListener("click", function() {
+    var nomorWhatsApp = "+6281779067546";
+    var pesan = "Hai, aku suka kamu! ❤️";
+    var url = "https://api.whatsapp.com/send?phone=" + nomorWhatsApp + "&text=" + encodeURIComponent(pesan);
+    window.open(url, "_blank");
+  });
+
+  function changeButtonPosition() {
+    var button = document.getElementById("rejectButton");
+    var container = document.querySelector(".container");
+    var maxX = container.clientWidth - button.clientWidth;
+    var maxY = container.clientHeight - button.clientHeight;
+
+    var randomX = Math.random() * maxX * 0.8;
+    var randomY = Math.random() * maxY * 0.8;
+
+    button.style.left = randomX + "px";
+    button.style.top = randomY + "px";
+
+    rejectCount++;
+    if (rejectCount === 3) {
+      showPopup("Aku kecewa");
+    }
+  }
+
+  function showPopup(message) {
+    alert(message);
+  }
+
+  document.getElementById("rejectButton").addEventListener("click", function() {
+    changeButtonPosition();
+  });
+
+  document.getElementById("giveTimeButton").addEventListener("click", function() {
+    var nomorWhatsApp = "+6281779067546";
+    var pesan = "Beri aku waktu untuk memikirkannya.";
+    var url = "https://api.whatsapp.com/send?phone=" + nomorWhatsApp + "&text=" + encodeURIComponent(pesan);
+    window.open(url, "_blank");
+  });
+</script>
+</body>
+</html>
